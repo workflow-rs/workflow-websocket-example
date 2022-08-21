@@ -18,7 +18,7 @@ async fn main() -> Result<()> {
             log_trace!("▷ sending message {}" ,seq);
             let msg = format!("message {}", seq).into();
             // let result = ws_.post(Message::Text(msg)).await;;
-            let result = ws_.send(Message::Text(msg)).await;;
+            let result = ws_.send(Message::Text(msg)).await;
             match result {
                 Ok(_) => {  },
                 Err(err) => {
