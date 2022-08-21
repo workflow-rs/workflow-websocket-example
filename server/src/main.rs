@@ -44,11 +44,25 @@ impl WebSocketHandler for MyWsHandler {
     }
 }
 
+struct Sink;
+
+impl workflow_log::Sink for Sink {
+    fn write(&self, level:Level, args : &std::fmt::Arguments<'_>) -> bool {
+        println!("[{}] {}",level, args.to_string());
+        false
+    }
+}
+
+
 #[tokio::main]
 async fn main() -> Result<()> {
+    
+    let sink = Sink {};
+    workflow_log::pipe(Arc::new(sink));
+    workflow_log::set_log_level(workflow_log::LevelFilter::Info);
 
     let addr = "127.0.0.1:9090";
-    log_info!("WebSocket Server is listening on {}", addr);
+    log_info!("WebSocket server is listening on {}", addr);
 
     // create our handler instance
     let handler = Arc::new(MyWsHandler { });

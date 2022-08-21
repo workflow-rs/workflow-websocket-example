@@ -1,14 +1,11 @@
 [package]
-name = "server"
+name = "workflow-websocket-example-server"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 workflow-log = { path = "../../workflow-log" }
 workflow-websocket = { path = "../../workflow-websocket" }
-# tokio = { version = "1.20.1", features = ["io-util"] }
 tokio = { version = "1.20.1", features = ["rt-multi-thread"] }
 async-trait = "0.1.57"
 tungstenite = "0.17.2"
