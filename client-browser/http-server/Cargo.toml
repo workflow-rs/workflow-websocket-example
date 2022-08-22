@@ -8,3 +8,4 @@ tide = "0.16.0"
 async-std = { version = "1.8.0", features = ["attributes"] }
 thiserror = "1.0.32"
 rand = "0.7.3"
+cfg-if = "1.0.0"
