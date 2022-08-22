@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "server",
-    "client",
-    "browser/*",
+    "client-common",
+    "client-native",
+    "client-browser/*",
 ]

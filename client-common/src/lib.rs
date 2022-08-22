@@ -5,8 +5,7 @@ use workflow_websocket::client::{
     WebSocket, Result, Message
 };
 
-#[tokio::main]
-async fn main() -> Result<()> {
+pub async fn client_example(message_delay: Duration) -> Result<()> {
 
     let ws = WebSocket::new("ws://localhost:9090")?;
     ws.connect(true).await?;
@@ -15,7 +14,7 @@ async fn main() -> Result<()> {
     workflow_core::task::spawn(async move {
         let mut seq = 0;
         loop {
-            log_trace!("▷ sending message {}" ,seq);
+            log_info!("▷ sending message {}" ,seq);
             let msg = format!("message {}", seq).into();
             // let result = ws_.post(Message::Text(msg)).await;;
             let result = ws_.send(Message::Text(msg)).await;
@@ -26,7 +25,8 @@ async fn main() -> Result<()> {
                 }
             }
 
-            workflow_core::task::sleep(Duration::from_millis(1000)).await;
+            // workflow_core::task::sleep(Duration::from_millis(1000)).await;
+            workflow_core::task::sleep(message_delay).await;
 
             seq += 1;
         }
