@@ -3,9 +3,9 @@ use std::sync::Arc;
 use tungstenite::Message;
 use async_trait::async_trait;
 use tokio::sync::mpsc::*;
-use workflow_websocket::server::WebSocketHandler;
-use workflow_websocket::server::WebSocketServer;
-use workflow_websocket::server::Result;
+use workflow_websocket::server::{
+    WebSocketHandler, WebSocketServer, Result
+};
 use workflow_log::*;
 
 // Struct representing a websocket connection
@@ -59,7 +59,7 @@ async fn main() -> Result<()> {
     
     let sink = Sink {};
     workflow_log::pipe(Arc::new(sink));
-    workflow_log::set_log_level(workflow_log::LevelFilter::Info);
+    workflow_log::set_log_level(workflow_log::LevelFilter::Trace);
 
     let addr = "127.0.0.1:9090";
     log_info!("WebSocket server is listening on {}", addr);
