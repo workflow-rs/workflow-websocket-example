@@ -2,12 +2,12 @@ use std::time::Duration;
 
 use workflow_log::*;
 use workflow_websocket::client::{
-    WebSocket, Result, Message
+    WebSocket, Result, Message, Settings
 };
 
 pub async fn client_example(message_delay: Duration) -> Result<()> {
 
-    let ws = WebSocket::new("ws://localhost:9090")?;
+    let ws = WebSocket::new("ws://localhost:9090", Settings::default())?;
     ws.connect(true).await?;
 
     let ws_ = ws.clone();
