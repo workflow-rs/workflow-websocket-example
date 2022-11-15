@@ -32,7 +32,7 @@ impl workflow_log::Sink for Sink {
 pub async fn main() -> Result<(),String> {
 
     let sink = Sink {};
-    workflow_log::pipe(Arc::new(sink));
+    workflow_log::pipe(Some(Arc::new(sink)));
     workflow_log::set_log_level(LevelFilter::Info);
 
     log_info!("starting...");
